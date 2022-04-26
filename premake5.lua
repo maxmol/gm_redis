@@ -1,4 +1,4 @@
-PROJECT_GENERATOR_VERSION = 2
+PROJECT_GENERATOR_VERSION = 3
 
 newoption({
 	trigger = "gmcommon",
@@ -44,7 +44,7 @@ CreateWorkspace({name = "redis.core"})
 			["Source files/*"] = REDIS_FOLDER .. "/sources/**.cpp",
 			["Header files/*"] = REDIS_FOLDER .. "/includes/cpp_redis/**"
 		})
-		links("tacopie")
+		links({"tacopie", "pthread"})
 
 		filter("system:windows")
 			files(REDIS_FOLDER .. "/sources/network/windows_impl/*.cpp")
@@ -65,6 +65,8 @@ CreateWorkspace({name = "redis.core"})
 			["Source files/*"] = TACOPIE_FOLDER .. "/sources/**.cpp",
 			["Header files/*"] = TACOPIE_FOLDER .. "/includes/tacopie/**"
 		})
+
+		links("pthread")
 
 		filter("system:windows")
 			files(TACOPIE_FOLDER .. "/sources/network/windows/*.cpp")

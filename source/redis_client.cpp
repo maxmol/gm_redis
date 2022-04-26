@@ -73,7 +73,7 @@ LUA_FUNCTION( Create )
 	LUA->SetMetaTable( -2 );
 
 	LUA->CreateTable( );
-	lua_setfenv( LUA->GetState( ), -2 );
+	LUA->GetFEnv( -2 );
 
 	LUA->GetField( GarrysMod::Lua::INDEX_REGISTRY, table_name );
 	LUA->PushUserdata( &container->GetClient( ) );
@@ -87,7 +87,7 @@ LUA_FUNCTION( Create )
 inline void CheckType( GarrysMod::Lua::ILuaBase *LUA, int32_t index )
 {
 	if( !LUA->IsType( index, metatype ) )
-		luaL_typerror( LUA->GetState( ), index, metaname );
+		LUA->TypeError( index, metaname );
 }
 
 inline Container *GetUserData( GarrysMod::Lua::ILuaBase *LUA, int index )
@@ -132,7 +132,7 @@ LUA_FUNCTION_STATIC( index )
 
 	LUA->Pop( 2 );
 
-	lua_getfenv( LUA->GetState( ), 1 );
+	LUA->GetFEnv( 1 );
 	LUA->Push( 2 );
 	LUA->RawGet( -2 );
 	return 1;
@@ -142,7 +142,7 @@ LUA_FUNCTION_STATIC( newindex )
 {
 	CheckType( LUA, 1 );
 
-	lua_getfenv( LUA->GetState( ), 1 );
+	LUA->GetFEnv( 1 );
 	LUA->Push( 2 );
 	LUA->Push( 3 );
 	LUA->RawSet( -3 );
@@ -349,7 +349,7 @@ inline const char *ToString( GarrysMod::Lua::ILuaBase *LUA, int32_t idx )
 			break;
 
 		default:
-			LUA->PushFormattedString( "%s: %p", LUA->GetTypeName( LUA->GetType( idx ) ), lua_topointer( LUA->GetState( ), idx ) );
+			LUA->PushFormattedString( "%s: %p", LUA->GetTypeName( LUA->GetType( idx ) ), LUA->GetPointer( idx ) );
 			break;
 		}
 
