@@ -15,7 +15,7 @@ local TACOPIE_FOLDER = "cpp_redis/tacopie"
 
 CreateWorkspace({name = "redis.core"})
 	CreateProject({serverside = true})
-		links({"cpp_redis", "tacopie"})
+		links({"cpp_redis", "tacopie", "pthread"})
 		sysincludedirs({REDIS_FOLDER .. "/includes", TACOPIE_FOLDER .. "/includes"})
 		IncludeLuaShared()
 
@@ -23,7 +23,7 @@ CreateWorkspace({name = "redis.core"})
 			links("ws2_32")
 
 	CreateProject({serverside = false})
-		links({"cpp_redis", "tacopie"})
+		links({"cpp_redis", "tacopie", "pthread"})
 		sysincludedirs({REDIS_FOLDER .. "/includes", TACOPIE_FOLDER .. "/includes"})
 		IncludeLuaShared()
 
