@@ -73,7 +73,7 @@ LUA_FUNCTION( Create )
 	LUA->SetMetaTable( -2 );
 
 	LUA->CreateTable( );
-	LUA->GetFEnv( -2 );
+	LUA->SetFEnv( -2 );
 
 	LUA->GetField( GarrysMod::Lua::INDEX_REGISTRY, table_name );
 	LUA->PushUserdata( &container->GetClient( ) );
