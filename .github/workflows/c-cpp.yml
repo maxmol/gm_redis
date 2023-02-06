@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-linux:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
       with:
@@ -19,8 +19,8 @@ jobs:
         path: 'garrysmod_common'
     - name: Install Premake
       run: |
-        wget https://github.com/premake/premake-core/releases/download/v5.0.0-alpha15/premake-5.0.0-alpha15-linux.tar.gz -O premake.tar.gz
-        sudo tar -xvf premake.tar.gz --directory=/usr/bin
+        wget https://github.com/premake/premake-core/releases/download/v5.0.0-beta2/premake-5.0.0-beta2-linux.tar.gz -O premake.tar.gz
+        tar -xvf premake.tar.gz && sudo mv ./premake5 /usr/bin/
         sudo apt-get update
         sudo apt-get install g++-multilib
         gcc --version
