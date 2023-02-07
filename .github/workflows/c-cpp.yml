@@ -32,12 +32,12 @@ jobs:
       run: |
         cd projects/linux/gmake
         make
-        make config=releasewithsymbols_x86_64
+        make config=release_x86_64
     - uses: actions/upload-artifact@v2
       with:
         name: gmsv_redis.core_linux.dll
-        path: projects/linux/gmake/x86/ReleaseWithSymbols/gmsv_redis.core_linux.dll
+        path: projects/linux/gmake/x86/Release/gmsv_redis.core_linux.dll
     - uses: actions/upload-artifact@v2
       with:
         name: gmsv_redis.core_linux64.dll
-        path: projects/linux/gmake/x86_64/ReleaseWithSymbols/gmsv_redis.core_linux64.dll
+        path: projects/linux/gmake/x86_64/Release/gmsv_redis.core_linux64.dll
